@@ -286,8 +286,7 @@ namespace MongoDB.Driver
         {
             return CollectionExists(string.Concat(bucketName, ".files")); 
         }
-
-
+        
         /// <summary>
         /// Creates a collection. MongoDB creates collections automatically when they are first used, so
         /// this command is mainly here for frameworks.
