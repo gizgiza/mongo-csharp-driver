@@ -278,6 +278,17 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
+        /// Tests whether a gridFS bucket exists on this database.
+        /// </summary>
+        /// <param name="bucketName">The name of bucket.</param>
+        /// <returns>True if the bucket exists.</returns>
+        public bool BucketExists(string bucketName)
+        {
+            return CollectionExists(string.Concat(bucketName, ".files")); 
+        }
+
+
+        /// <summary>
         /// Creates a collection. MongoDB creates collections automatically when they are first used, so
         /// this command is mainly here for frameworks.
         /// </summary>

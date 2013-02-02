@@ -50,6 +50,24 @@ namespace MongoDB.DriverUnitTests
         }
 
         [Test]
+        public void TestBucketExists()
+        {
+            var bucketName = "testbucketnameexists";
+
+            Assert.IsFalse(_database.BucketExists(bucketName));
+
+            var bucket = _database.GetGridFS(new Driver.GridFS.MongoGridFSSettings { Root = bucketName });
+            
+            using (var stream = bucket.Create("test"))
+            {
+                stream.WriteByte(1);
+                stream.Flush();
+            }
+
+            Assert.IsTrue(_database.BucketExists(bucketName));
+        }
+
+        [Test]
         public void TestConstructorArgumentChecking()
         {
             var settings = new MongoDatabaseSettings();
